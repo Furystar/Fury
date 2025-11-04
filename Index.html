@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>A Special Surprise Just For You</title>
+    
+    <style>
+        /* --- CSS Styling (Appearance) --- */
+        body {
+            font-family: 'Georgia', serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            background-color: #fce4ec; /* Light pink background */
+            text-align: center;
+            padding: 20px;
+        }
+
+        .container {
+            background-color: white;
+            padding: 50px;
+            border-radius: 15px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+            max-width: 90%;
+            width: 500px;
+        }
+
+        h1 {
+            color: #d81b60; /* Darker pink for heading */
+        }
+
+        /* This ensures the message and image are hidden initially */
+        .hidden {
+            display: none !important;
+        }
+
+        #revealButton {
+            background-color: #ff4081; /* Accent Pink */
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            font-size: 1.2em;
+            font-weight: bold;
+            border-radius: 50px;
+            cursor: pointer;
+            margin-top: 30px;
+            transition: background-color 0.3s, transform 0.1s;
+        }
+
+        #revealButton:hover {
+            background-color: #f50057;
+            transform: translateY(-2px);
+        }
+        
+        #secretMessage {
+            color: #4a148c; /* Purple for key text */
+            font-size: 1.6em;
+            font-weight: 500;
+            margin-top: 30px;
+        }
+
+        #surpriseImage {
+            max-width: 100%;
+            height: auto;
+            border-radius: 10px;
+            margin-top: 25px;
+            border: 5px solid #ff4081; /* Border matching button */
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+            /* Simple fade-in animation for flair */
+            animation: fadeIn 1s;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>Hello, My Love!</h1>
+        <p>I made this page just for you. Please click the button below to start the surprise...</p>
+
+        <button id="revealButton">Click Here to Begin!</button>
+
+        <p id="secretMessage" class="hidden">
+            **SURPRISE 1:** You are my sunshine, my best friend, and the reason I smile every day!
+        </p>
+        
+        <img id="surpriseImage" class="hidden" src="https://images2.imgbox.com/9a/54/6gXLpmqa_o.jpg" alt="A lovely surprise photo of us" width="350">
+    </div>
+
+    <script>
+        /* --- JavaScript Logic (Interaction) --- */
+        
+        // 1. Get the elements
+        const button = document.getElementById('revealButton');
+        const message = document.getElementById('secretMessage');
+        const image = document.getElementById('surpriseImage');
+        
+        // 2. State variable
+        let clickCount = 0;
+
+        // 3. Define the click handler function
+        function handleSurpriseClick() {
+            clickCount++; 
+
+            if (clickCount === 1) {
+                // First click: Reveal the message
+                message.classList.remove('hidden');
+                button.textContent = 'Ready for the Photo?'; 
+                
+            } else if (clickCount === 2) {
+                // Second click: Reveal the image
+                image.classList.remove('hidden');
+                button.textContent = "That's my favorite person! ❤️";
+                button.style.backgroundColor = '#4a148c'; // Change button color
+                button.disabled = true; // Disable after the final surprise
+                button.style.cursor = 'default';
+
+            } 
+        }
+
+        // 4. Attach the function to the button
+        button.addEventListener('click', handleSurpriseClick);
+    </script>
+
+</body>
+</html>
